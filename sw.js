@@ -4,7 +4,7 @@ const urlsToCache = [
   '/ChardikalaTV/',
   '/ChardikalaTV/index.html',
   '/ChardikalaTV/manifest.json',
-  '/ChardikalaTV/icon-192.png',
+  '/ChardikalaTV/icon-256.png',
   '/ChardikalaTV/icon-512.png'
 ];
 
