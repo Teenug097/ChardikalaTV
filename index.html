@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chardikala TV North America</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="manifest.json" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      // Redirect to KaroStream player
+      window.location.href = "https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64";
+    </script>
+  </body>
+</html>
