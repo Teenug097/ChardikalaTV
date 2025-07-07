@@ -1,52 +1,82 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Chardikala TV North America</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="icon" href="icon-192.png" />
-    <style>
-      html, body {
-        margin: 0;
-        height: 100%;
-        background: black;
-        color: white;
-        font-family: sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Chardikala TV North America</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" />
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      margin: 1rem;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ddd;
+    }
+  </style>
+
+  <script>
+    let deferredPrompt;
+
+    window.addEventListener('load', () => {
+      // Register service worker
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+          .then(() => console.log('✅ Service Worker registered'))
+          .catch(err => console.error('❌ SW registration failed:', err));
       }
-      button {
-        font-size: 1.5rem;
-        padding: 1rem 2rem;
-        background: white;
-        color: black;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      button:hover {
-        background: #ddd;
-      }
-    </style>
-    <script>
-      window.addEventListener('load', () => {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('sw.js')
-            .then(() => console.log('Service Worker registered'))
-            .catch(err => console.error('SW registration failed:', err));
-        }
+
+      // Install prompt logic
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.getElementById('install-btn');
+        installBtn.style.display = 'block';
+
+        installBtn.addEventListener('click', async () => {
+          installBtn.style.display = 'none';
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response: ${outcome}`);
+          deferredPrompt = null;
+        });
       });
-    </script>
-  </head>
-  <body>
-    <h1>Chardikala TV</h1>
-    <p>Click below to start watching.</p>
-    <button onclick="window.location.href='https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64'">
-      ▶️ Watch Now
-    </button>
-  </body>
+    });
+  </script>
+</head>
+
+<body>
+  <h1>Chardikala TV</h1>
+  <p>Watch live from your device</p>
+
+  <button onclick="window.location.href='https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64'">
+    ▶️ Watch Now
+  </button>
+
+  <button id="install-btn" style="display: none;">
+    📲 Install App
+  </button>
+</body>
 </html>
