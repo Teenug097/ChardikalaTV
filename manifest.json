@@ -1,10 +1,11 @@
 {
-  "name": "PTC Punjabi",
-  "short_name": "PTC",
-  "start_url": "./",
+  "name": "Chardikala TV",
+  "short_name": "Chardikala",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
+  "description": "Watch Chardikala TV live via KaroStream.",
   "icons": [
     {
       "src": "icon-192.png",
