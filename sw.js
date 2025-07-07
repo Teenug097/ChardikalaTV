@@ -1,3 +1,7 @@
-self.addEventListener("fetch", function (event) {
-  // No caching logic, just required for installability
+self.addEventListener('install', event => {
+  self.skipWaiting();
+});
+
+self.addEventListener('fetch', event => {
+  // Let the request go to the network (since you're just redirecting)
 });
