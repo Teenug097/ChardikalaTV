@@ -6,16 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon-192.png" />
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("sw.js");
+        navigator.serviceWorker.register("sw.js").then(() => {
+          console.log("Service Worker registered");
+        }).catch(e => console.error("SW error", e));
       }
     </script>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+      }
+    </style>
   </head>
   <body>
+    <p>Redirecting to Chardikala TV...</p>
     <script>
-      // Redirect to KaroStream player
-      window.location.href = "https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64";
+      setTimeout(() => {
+        window.location.href = "https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64";
+      }, 2000); // Give browser time to register SW
     </script>
   </body>
 </html>
