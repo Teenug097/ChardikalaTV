@@ -13,29 +13,40 @@
         height: 100%;
         background: black;
         color: white;
+        font-family: sans-serif;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: sans-serif;
+      }
+      button {
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #ddd;
       }
     </style>
     <script>
-      // Register service worker
       window.addEventListener('load', () => {
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('sw.js')
             .then(() => console.log('Service Worker registered'))
             .catch(err => console.error('SW registration failed:', err));
         }
-
-        // Delay redirect to allow manifest and service worker to initialize
-        setTimeout(() => {
-          window.location.href = "https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64";
-        }, 10000); // Increased from 2000 to 3000 ms for added reliability
       });
     </script>
   </head>
   <body>
-    <p>Redirecting to Chardikala TV...</p>
+    <h1>Chardikala TV</h1>
+    <p>Click below to start watching.</p>
+    <button onclick="window.location.href='https://karostream.ca/player/tv?channelId=20000127&categoryId=90000021&channelNumber=64'">
+      ▶️ Watch Now
+    </button>
   </body>
 </html>
