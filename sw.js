@@ -3,5 +3,5 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Let the request go to the network (since you're just redirecting)
+  event.respondWith(fetch(event.request));
 });
